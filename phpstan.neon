@@ -1,0 +1,46 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+        - config/
+        - database/
+        - routes/
+
+    # Level 10 is the highest level
+    level: 5
+
+    checkMissingIterableValueType: false
+
+    checkGenericClassInNonGenericObjectType: false
+
+    # Laravel specific settings
+    noUnnecessaryCollectionCall: true
+
+    checkModelProperties: true
+
+    # Larastan specific settings
+    databaseMigrationsPath:
+        - database/migrations
+
+    squashedMigrationsPath:
+        - database/migrations
+
+    modelPropertiesExtension:
+        properties:
+            App\Models\User:
+                id: int
+                name: string
+                email: string
+                email_verified_at: \Carbon\Carbon|null
+                created_at: \Carbon\Carbon|null
+                updated_at: \Carbon\Carbon|null
+
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
